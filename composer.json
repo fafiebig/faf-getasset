@@ -1,6 +1,3 @@
-// 20170220095610
-// https://raw.githubusercontent.com/fafiebig/faf-optim/master/composer.json
-
 {
   "name": "fafiebig/faf-getasset",
   "description": "Wordpress Plugin media proxy to privatize media urls.",
