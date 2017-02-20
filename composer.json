@@ -1,0 +1,28 @@
+// 20170220095610
+// https://raw.githubusercontent.com/fafiebig/faf-optim/master/composer.json
+
+{
+  "name": "fafiebig/faf-getasset",
+  "description": "Wordpress Plugin media proxy to privatize media urls.",
+  "keywords": [
+    "wordpress",
+    "plugin",
+    "proxy",
+    "getasset",
+    "private"
+  ],
+  "homepage": "https://github.com/fafiebig/faf-getasset",
+  "license": "GNU GENERAL PUBLIC LICENSE",
+  "authors": [
+    {
+      "name": "F.A. Fiebig",
+      "email": "fafworx@gmail.com",
+      "homepage": "http://fafworx.com"
+    }
+  ],
+  "type": "wordpress-plugin",
+  "require": {
+    "php": ">=5.3.2",
+    "composer/installers": "v1.2.0"
+  }
+}
