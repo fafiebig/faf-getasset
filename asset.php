@@ -1,20 +1,30 @@
 <?php
 
 define('WP_USE_THEMES', false);
-
 require(dirname(__FILE__).'/../../../wp//wp-blog-header.php');
 
+// extract hash
 $hashed = base64_decode($_REQUEST['asset']);
+$params = explode('|', $hashed);
 
-list($id, $size) = explode('|', $hashed);
+// bail out early
+if (!is_numeric($params[0]) || !isset($params[1])) {
+    header('HTTP/1.0 404 Not found');
+    exit;
+}
 
+// what is what
+$id     = $params[0];
+$size   = $params[1];
+
+// check private
 $private    = get_post_meta($id, 'private', true);
-
 if ($private === 'yes' && !is_user_logged_in()) {
     header('HTTP/1.0 403 Forbidden');
     exit;
 }
 
+// return file content
 if ( $file = get_post_meta( $id, '_wp_attached_file', true ) ) {
 
     if ( ($uploads = wp_get_upload_dir()) && false === $uploads['error'] ) {
@@ -45,5 +55,6 @@ if ( $file = get_post_meta( $id, '_wp_attached_file', true ) ) {
     }
 }
 
+// final header when no file was delivered
 header('HTTP/1.0 404 Not Found');
 exit;
