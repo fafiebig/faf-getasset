@@ -59,7 +59,8 @@ function getSecureAttachmentUrl($url, $fileId)
         $private = get_post_meta($fileId, 'private', true);
 
         if ($private === 'yes' && !wp_attachment_is_image($fileId)) {
-            return get_template_directory_uri() . '/media.php?asset=' . $fileId;
+            $assetHash = base64_encode($fileId.'|');
+            return plugin_dir_url( __FILE__ ).'asset.php?asset=' . $assetHash;
         }
     }
 
@@ -77,7 +78,8 @@ function getSecureAttachmentImageSrc($url, $fileId, $size)
         $private = get_post_meta($fileId, 'private', true);
 
         if ($private === 'yes') {
-            $url[0] = get_template_directory_uri() . '/media.php?asset='.$fileId.'&size='.$size;
+            $assetHash = base64_encode($fileId.'|'.$size);
+            $url[0] = plugin_dir_url( __FILE__ ).'asset.php?asset='.$assetHash;
         }
     }
 
