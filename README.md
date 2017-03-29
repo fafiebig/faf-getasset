@@ -31,3 +31,17 @@ You must be logged in to see private media assets.
 composer require fafiebig/faf-getasset 1.*
 
 ```
+
+# Shortcode Usage
+
+Shortcodes will create a link that forces a download of the file.
+
+```shell
+
+// for images
+[download_image id="<imageId>" title="<link title>" link="<link name>" size="<image size>"]
+
+// for other files
+[download_attachment id="<attachmentId>" title="<link title>" link="<link name>"]
+
+```

@@ -14,7 +14,7 @@ defined('ABSPATH') or die('No direct script access allowed!');
  * @param $param
  * @return string
  */
-function shortImageDownloadLink($param)
+function shortDownloadImage($param)
 {
     $title  = (isset($param['title'])) ? $param['title'] : 'Download Image';
     $link   = (isset($param['link'])) ? $param['link'] : 'Download Image';
@@ -24,7 +24,22 @@ function shortImageDownloadLink($param)
 
     echo '<a class="'.$class.'" href="'.$url[0].'" download="'.$url[0].'" title="'.$title.'">'.$link.'</a>';
 }
-add_shortcode('download_link', 'shortImageDownloadLink');
+add_shortcode('download_image', 'shortDownloadImage');
+
+/**
+ * @param $param
+ * @return string
+ */
+function shortDownloadAttachment($param)
+{
+    $title  = (isset($param['title'])) ? $param['title'] : 'Download Attchment';
+    $link   = (isset($param['link'])) ? $param['link'] : 'Download Attachment';
+    $class  = (isset($param['class'])) ? $param['class'] : 'class';
+    $url    = getSecureAttachmentUrl(null, $param['id'], 'attachment');
+
+    echo '<a class="'.$class.'" href="'.$url.'" download="'.$url.'" title="'.$title.'">'.$link.'</a>';
+}
+add_shortcode('download_attachment', 'shortDownloadAttachment');
 
 /**
  * @param $form_fields
