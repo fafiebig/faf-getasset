@@ -22,7 +22,7 @@ function shortImageDownloadLink($param)
     $class  = (isset($param['class'])) ? $param['class'] : 'class';
     $url    = getSecureAttachmentImageSrc(null, $param['id'], $size, 'attachment');
 
-    echo '<a class="'.$class.'" href="'.$url.'" download="'.$url.'" title="'.$title.'">'.$link.'</a>';
+    echo '<a class="'.$class.'" href="'.$url[0].'" download="'.$url[0].'" title="'.$title.'">'.$link.'</a>';
 }
 add_shortcode('download_link', 'shortImageDownloadLink');
 
