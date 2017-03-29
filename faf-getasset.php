@@ -11,6 +11,22 @@ License: GNU GENERAL PUBLIC LICENSE
 defined('ABSPATH') or die('No direct script access allowed!');
 
 /**
+ * @param $param
+ * @return string
+ */
+function shortImageDownloadLink($param)
+{
+    $title  = (isset($param['title'])) ? $param['title'] : 'Download Image';
+    $link   = (isset($param['link'])) ? $param['link'] : 'Download Image';
+    $size   = (isset($param['size'])) ? $param['size'] : 'thumbnail';
+    $class  = (isset($param['class'])) ? $param['class'] : 'class';
+    $url    = getSecureAttachmentImageSrc(null, $param['id'], $size, 'attachment');
+
+    echo '<a class="'.$class.'" href="'.$url.'" download="'.$url.'" title="'.$title.'">'.$link.'</a>';
+}
+add_shortcode('download_link', 'shortImageDownloadLink');
+
+/**
  * @param $form_fields
  * @param $post
  * @return mixed
@@ -53,13 +69,13 @@ add_action( 'edit_attachment', 'saveAttachmentFields', 10, 2 );
  * @param $url
  * @return mixed
  */
-function getSecureAttachmentUrl($url, $fileId)
+function getSecureAttachmentUrl($url, $fileId, $disp = 'inline')
 {
     if (!is_admin()) {
         $private = get_post_meta($fileId, 'private', true);
 
         if ($private === 'yes' && !wp_attachment_is_image($fileId)) {
-            $assetHash = base64_encode($fileId.'|');
+            $assetHash = base64_encode($fileId.'||'.$disp);
             return plugin_dir_url( __FILE__ ).'asset.php?asset=' . $assetHash;
         }
     }
@@ -72,13 +88,13 @@ add_filter('wp_get_attachment_url', 'getSecureAttachmentUrl', 10, 2);
  * @param $url
  * @return mixed
  */
-function getSecureAttachmentImageSrc($url, $fileId, $size)
+function getSecureAttachmentImageSrc($url, $fileId, $size, $disp = 'inline')
 {
     if (!is_admin()) {
         $private = get_post_meta($fileId, 'private', true);
 
         if ($private === 'yes') {
-            $assetHash = base64_encode($fileId.'|'.$size);
+            $assetHash = base64_encode($fileId.'|'.$size.'|'.$disp);
             $url[0] = plugin_dir_url( __FILE__ ).'asset.php?asset='.$assetHash;
         }
     }

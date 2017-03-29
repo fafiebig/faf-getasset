@@ -1,21 +1,22 @@
 <?php
 
 define('WP_USE_THEMES', false);
-require(dirname(__FILE__).'/../../../wp//wp-blog-header.php');
+require(dirname(__FILE__).'/../../../wp/wp-blog-header.php');
 
 // extract hash
 $hashed = base64_decode($_REQUEST['asset']);
 $params = explode('|', $hashed);
 
 // bail out early
-if (!is_numeric($params[0]) || !isset($params[1])) {
+if (!is_numeric($params[0])) {
     header('HTTP/1.0 404 Not found');
     exit;
 }
 
 // what is what
 $id     = $params[0];
-$size   = $params[1];
+$size   = (isset($params[1]) && !empty($params[1])) ? $params[1] : false;
+$disp   = (isset($params[2]) && !empty($params[2])) ? $params[2] : 'inline';
 
 // check private
 $private    = get_post_meta($id, 'private', true);
@@ -31,7 +32,7 @@ if ( $file = get_post_meta( $id, '_wp_attached_file', true ) ) {
         $path   = $uploads['basedir'].'/'.$file;
         $name   = basename($path);
 
-        if (!empty($size)) {
+        if ($size) {
             $image  = image_downsize( $id, $size );
             $url    = $image[0];
             $path   = str_replace($uploads['baseurl'], $uploads['basedir'], $url);
@@ -46,7 +47,7 @@ if ( $file = get_post_meta( $id, '_wp_attached_file', true ) ) {
             header('Cache-Control: public, must-revalidate, max-age=0');
             header('Pragma: no-cache');
             header('Content-Type: '.$mime);
-            header('Content-Disposition: inline; filename='.$name.'.'.$ext);
+            header('Content-Disposition: '.$disp.'; filename='.$name.'.'.$ext);
             header("Content-Transfer-Encoding: binary");
             header('Content-Length: ' . filesize($path));
             readfile($path);
