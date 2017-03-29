@@ -39,9 +39,9 @@ Shortcodes will create a link that forces a download of the file.
 ```shell
 
 // for images
-[download_image id="<imageId>" title="<link title>" link="<link name>" class="download-image" size="<image size>"]
+[download_image id="<imageId>" title="<link title>" link="<link name>" class="<css classes>" size="<image size>"]
 
 // for other files
-[download_attachment id="<attachmentId>" title="<link title>" link="<link name>" class="download-attachment"]
+[download_attachment id="<attachmentId>" title="<link title>" link="<link name>" class="<css classes>"]
 
 ```
