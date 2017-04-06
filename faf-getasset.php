@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: FAF GetAsset
-Plugin URI: https://github.com/fafiebig/faf-optim
+Plugin URI: https://github.com/fafiebig/faf-getasset
 Description: Media proxy to privatize media urls.
 Version: 1.0
 Author: F.A. Fiebig

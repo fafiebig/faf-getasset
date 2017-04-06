@@ -19,7 +19,7 @@ $size   = (isset($params[1]) && !empty($params[1])) ? $params[1] : false;
 $disp   = (isset($params[2]) && !empty($params[2])) ? $params[2] : 'inline';
 
 // check private
-$private    = get_post_meta($id, 'private', true);
+$private = get_post_meta($id, 'private', true);
 if ($private === 'yes' && !is_user_logged_in()) {
     header('HTTP/1.0 403 Forbidden');
     exit;

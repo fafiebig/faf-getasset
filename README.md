@@ -1,7 +1,8 @@
 # faf-getasset
 
 Wordpress Plugin media proxy to privatize media urls.
-You must be logged in to see private media assets.
+Adds a private checkbox to media asset posts.
+You must be logged in to see private checked media assets.
 
 # Installation
 
