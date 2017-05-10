@@ -17,7 +17,7 @@ defined('ABSPATH') or die('No direct script access allowed!');
 function shortDownloadImage($param)
 {
     $title  = (isset($param['title'])) ? $param['title'] : 'Download Image';
-    $link   = (isset($param['link'])) ? $param['link'] : 'Download Image';
+    $link   = (isset($param['link'])) ? $param['link'] : 'Download '.get_the_title($param['id']);
     $size   = (isset($param['size'])) ? $param['size'] : 'thumbnail';
     $class  = (isset($param['class'])) ? $param['class'] : 'class';
     $url    = getSecureAttachmentImageSrc(null, $param['id'], $size, 'attachment');
@@ -33,7 +33,7 @@ add_shortcode('download_image', 'shortDownloadImage');
 function shortDownloadAttachment($param)
 {
     $title  = (isset($param['title'])) ? $param['title'] : 'Download Attchment';
-    $link   = (isset($param['link'])) ? $param['link'] : 'Download Attachment';
+    $link   = (isset($param['link'])) ? $param['link'] : 'Download '.get_the_title($param['id']);
     $class  = (isset($param['class'])) ? $param['class'] : 'class';
     $url    = getSecureAttachmentUrl(null, $param['id'], 'attachment');
 
