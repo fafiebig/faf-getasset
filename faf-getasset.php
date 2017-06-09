@@ -32,7 +32,7 @@ add_shortcode('download_image', 'shortDownloadImage');
  */
 function shortDownloadAttachment($param)
 {
-    $title  = (isset($param['title'])) ? $param['title'] : 'Download Attchment';
+    $title  = (isset($param['title'])) ? $param['title'] : 'Download Attachment';
     $link   = (isset($param['link'])) ? $param['link'] : 'Download '.get_the_title($param['id']);
     $class  = (isset($param['class'])) ? $param['class'] : 'class';
     $url    = getSecureAttachmentUrl(null, $param['id'], 'attachment');
