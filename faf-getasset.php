@@ -111,6 +111,8 @@ function getSecureAttachmentImageSrc($url, $fileId, $size, $disp = 'inline')
         if ($private === 'yes') {
             $assetHash = base64_encode($fileId.'|'.$size.'|'.$disp);
             $url[0] = plugin_dir_url( __FILE__ ).'asset.php?asset='.$assetHash;
+            $url[1] = null;
+            $url[2] = null;
         }
     }
 
