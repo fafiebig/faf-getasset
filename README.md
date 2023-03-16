@@ -1,3 +1,6 @@
+# DEPRECATED - DO NOT USE IT ANY LONGER!
+
+
 # faf-getasset
 
 Wordpress Plugin media proxy to privatize media urls.
